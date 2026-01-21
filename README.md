@@ -45,3 +45,41 @@ graph TD;
     style Fraud fill:#f9f,stroke:#333,stroke-width:2px;
     style FP fill:#bbf,stroke:#333,stroke-width:1px;
     style IP fill:#bbf,stroke:#333,stroke-width:1px;
+--
+## 📊 Experimental Results
+
+### Case Study: *The Foreign Purchase Scenario*
+
+When a transaction is flagged as a **Foreign Purchase** (`FP = True`), the model updates its belief state as follows:
+
+#### 🔹 Prior Belief
+- **Prior Probability**:  
+  \[
+  P(\text{Fraud}) \approx 0.42\%
+  \]
+
+#### 🔹 Posterior Belief
+- **Posterior Probability**:  
+  \[
+  P(\text{Fraud} \mid FP = \text{True})
+  \]
+  increases significantly according to the Conditional Probability Tables (CPTs).
+
+#### 🔹 Decision Analysis
+
+- **Expected Utility of Allowing the Transaction**:
+  \[
+  EU(\text{Allow}) = P(\text{Fraud} \mid FP) \times (-1000) 
+  + P(\neg \text{Fraud} \mid FP) \times 0
+  \]
+
+- **Expected Utility of Blocking the Transaction**:
+  \[
+  EU(\text{Block}) = -10
+  \]
+
+#### 🔹 Decision Outcome
+- When the estimated fraud risk exceeds the **break-even probability threshold**, the system **automatically switches** its decision from **ALLOW** to **BLOCK**.
+
+✔️ **Final Decision**: **BLOCK**
+
